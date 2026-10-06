@@ -1,9 +1,9 @@
-// app.js
 
-// 1. Configuración de todas las funciones
+// Catálogo ordenado de las 15 funciones que se muestran en el panel.
 const catalogoFunciones = [
     // --- MATEMÁTICAS ---
-    { 
+    // 1. Suma dos números ingresados por el usuario.
+    {
         id: 'suma', 
         nombre: "Sumar Dos Números", 
         func: sumar, 
@@ -13,28 +13,32 @@ const catalogoFunciones = [
             { name: 'b', label: 'Número B', type: 'number' }
         ] 
     },
-    { 
+    // 2. Multiplica un número por dos.
+    {
         id: 'doble', 
         nombre: "Obtener Doble", 
         func: obtenerDoble, 
         desc: "Multiplica un número por 2",
         params: [{ name: 'numero', label: 'Número', type: 'number' }] 
     },
-    { 
+    // 3. Comprueba si un número es par o impar.
+    {
         id: 'par', 
         nombre: "Verificar si es Par", 
         func: esPar, 
-        desc: "Retorna true si es par, false si es impar",
+        desc: "Indica si el número ingresado es par o impar",
         params: [{ name: 'numero', label: 'Número', type: 'number' }] 
     },
-    { 
+    // 4. Genera un número aleatorio entre 1 y 100.
+    {
         id: 'aleatorio', 
         nombre: "Número Aleatorio", 
         func: () => numeroAleatorio(1, 100), 
         desc: "Genera un número entre 1 y 100",
         params: null 
     },
-    { 
+    // 5. Encuentra el mayor de tres números.
+    {
         id: 'mayor', 
         nombre: "Mayor de Tres", 
         func: obtenerMayor, 
@@ -45,7 +49,8 @@ const catalogoFunciones = [
             { name: 'c', label: 'Número C', type: 'number' }
         ] 
     },
-    { 
+    // 6. Calcula el área total de un cilindro.
+    {
         id: 'cilindro', 
         nombre: "Área Cilindro", 
         func: calcularAreaCilindro, 
@@ -55,14 +60,16 @@ const catalogoFunciones = [
             { name: 'altura', label: 'Altura', type: 'number' }
         ] 
     },
-    { 
+    // 7. Convierte grados Celsius a Fahrenheit.
+    {
         id: 'celsius', 
         nombre: "Celsius a Fahrenheit", 
         func: celsiusAFahrenheit, 
         desc: "Convierte temperatura",
         params: [{ name: 'celsius', label: 'Grados °C', type: 'number' }] 
     },
-    { 
+    // 8. Convierte una medida en metros a centímetros.
+    {
         id: 'metros', 
         nombre: "Metros a Centímetros", 
         func: metrosACentimetros, 
@@ -71,47 +78,48 @@ const catalogoFunciones = [
     },
 
     // --- TEXTO ---
-    { 
+    // 9. Saluda al usuario usando el nombre ingresado.
+    {
         id: 'saludo', 
         nombre: "Saludar Usuario", 
         func: saludar, 
         desc: "Escribe un nombre para saludar",
         params: [{ name: 'nombre', label: 'Nombre', type: 'text' }] 
     },
-    { 
+    // 10. Convierte el texto ingresado a mayúsculas.
+    {
         id: 'mayuscula', 
         nombre: "Texto a Mayúsculas", 
         func: convertirMayusculas, 
         desc: "Convierte todo a MAYÚSCULAS",
         params: [{ name: 'texto', label: 'Texto', type: 'text' }] 
     },
-    { 
+    // 11. Cuenta las palabras de una frase.
+    {
         id: 'palabras', 
         nombre: "Contar Palabras", 
         func: contarPalabras, 
         desc: "Cuenta cuántas palabras hay",
         params: [{ name: 'frase', label: 'Frase', type: 'text' }] 
     },
-    { 
-        id: 'cambiar_texto', 
-        nombre: "Cambiar Texto HTML", 
-        func: cambiarTextoElemento, 
-        desc: "Modifica el texto del párrafo superior",
-        params: [
-            { name: 'id', label: 'ID Elemento', type: 'text', default: 'textoPrueba' },
-            { name: 'texto', label: 'Nuevo Texto', type: 'text', default: '¡Hola Mundo!' }
-        ] 
+    // 12. Invierte el orden de los caracteres de un texto.
+    {
+        id: 'invertir_texto',
+        nombre: "Invertir Texto",
+        func: invertirTexto,
+        desc: "Muestra el texto escrito al revés",
+        params: [{ name: 'texto', label: 'Texto', type: 'text' }]
     },
-
-    // --- ARREGLOS ---
-    { 
+    // 13. Elimina los valores repetidos de una lista.
+    {
         id: 'duplicados', 
         nombre: "Eliminar Duplicados", 
         func: eliminarDuplicados, 
         desc: "Limpia un array de repetidos",
         params: [{ name: 'arr', label: 'Array (ej: 1,2,2,3)', type: 'text' }] 
     },
-    { 
+    // 14. Filtra una lista y conserva los números mayores que 10.
+    {
         id: 'filtrar', 
         nombre: "Filtrar Mayores a 10", 
         func: filtrarMayoresA10, 
@@ -120,7 +128,8 @@ const catalogoFunciones = [
     },
 
     // --- FECHA ---
-    { 
+    // 15. Obtiene la fecha y hora actuales.
+    {
         id: 'fecha', 
         nombre: "Fecha Actual", 
         func: obtenerFechaActual, 
@@ -129,7 +138,7 @@ const catalogoFunciones = [
     }
 ];
 
-// 2. Renderizar tarjetas en el HTML
+// 1. Crea una tarjeta interactiva para cada función del catálogo.
 function inicializarPanel() {
     const contenedor = document.getElementById('contenedor-funciones');
     if (!contenedor) return;
@@ -146,7 +155,7 @@ function inicializarPanel() {
     });
 }
 
-// 3. Preparar interfaz (Inputs o Ejecución directa)
+// 2. Muestra el formulario de entrada o ejecuta la función sin parámetros.
 function prepararInterfaz(item) {
     const area = document.getElementById('area-resultados');
     const output = document.getElementById('output-texto');
@@ -184,7 +193,7 @@ function prepararInterfaz(item) {
     output.innerHTML = formHTML;
 }
 
-// 4. Ejecutar función con valores del usuario
+// 3. Convierte los datos del formulario y muestra el resultado de la función.
 window.ejecutarConParametros = function(itemId) {
     const item = catalogoFunciones.find(f => f.id === itemId);
     if (!item) return;
@@ -208,17 +217,21 @@ window.ejecutarConParametros = function(itemId) {
     
     try {
         const resultado = item.func(...args);
+        const resultadoVisible = item.id === 'par'
+            ? (resultado ? 'Es par' : 'Es impar')
+            : JSON.stringify(resultado, null, 2);
         document.getElementById('output-texto').innerHTML = 
-            `<span style="color:#2ecc71">✓ Resultado:</span><br><pre>${JSON.stringify(resultado, null, 2)}</pre>`;
+            `<span style="color:#2ecc71">✓ Resultado:</span><br><pre>${resultadoVisible}</pre>`;
     } catch (e) {
         document.getElementById('output-texto').innerHTML = 
             `<span style="color:#e74c3c">✗ Error:</span> ${e.message}`;
     }
 };
 
+// 4. Oculta el panel de resultados y formularios.
 function cerrarResultado() {
     document.getElementById('area-resultados').classList.add('hidden');
 }
 
-// Iniciar aplicación
+// Inicia el panel cuando se carga este archivo.
 inicializarPanel();

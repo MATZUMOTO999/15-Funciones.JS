@@ -15,10 +15,12 @@ function obtenerDoble(numero) {
     return numero * 2;
 }
 
-// ES PAR: Responde SI (true) o NO (false) si es divisible por 2
+// ES PAR: Responde SI (ES PAR) o NO (NO ES PAR) si es divisible por 2
 function esPar(numero) {
     return numero % 2 === 0;
+    
 }
+
 
 // MAYOR: Encuentra cuál de los tres números es el más grande
 function obtenerMayor(a, b, c) {
@@ -71,12 +73,7 @@ function filtrarMayoresA10(arr) {
     return arr.filter(num => num > 10);
 }
 
-// CAMBIAR TEXTO HTML: Cambia lo que dice un elemento en la página
-function cambiarTextoElemento(id, nuevoTexto) {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-        elemento.textContent = nuevoTexto;
-        return "Texto cambiado con éxito.";
-    }
-    return "Error: No encontré ese elemento.";
+// INVERTIR TEXTO: Devuelve los caracteres en orden inverso
+function invertirTexto(texto) {
+    return Array.from(texto).reverse().join("");
 }
